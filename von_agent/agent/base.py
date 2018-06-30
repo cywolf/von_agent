@@ -416,9 +416,9 @@ class _BaseAgent:
                 txn = json.loads(txn_json)
                 if txn.get('type', None) == '101':  # {} for no such txn; 101 marks indy-sdk schema txn type
                     rv_json = await self.get_schema(SchemaKey(
-                        txn['identifier'],
-                        txn['data']['name'],
-                        txn['data']['version']))
+                        txn['metadata']['from'],
+                        txn['data']['data']['name'],
+                        txn['data']['data']['version']))
                 else:
                     LOGGER.info('_BaseAgent.get_schema: no schema at seq #%s on ledger', index)
 
