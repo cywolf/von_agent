@@ -445,7 +445,7 @@ class _BaseAgent:
         req_json = await ledger.build_get_txn_request(self.did, None, txn)
         resp = json.loads(await self._submit(req_json))
 
-        rv_json = json.dumps(resp['result'].get('data', {}))
+        rv_json = json.dumps(resp['result'].get('txn', {}).get('data', {}))
         LOGGER.debug('_BaseAgent.get_txn <<< %s', rv_json)
         return rv_json
 
